@@ -1,0 +1,63 @@
+Language 
+    1. Procedural
+    2. OOP
+
+Languages:
+    1. Compiled
+    2. Interpreted
+
+for i in Iterable/range fn:
+    #logic
+else:
+    #logic
+
+Iterable - List, Tuple, Set, Dict, String
+range(start, stop, step)
+    ex: range(0, 10, 2) # 0, 2, 4, 6, 8
+    ex: range(10) # 0, 1, 2, ..., 9
+    ex: range(10, 0, -1) # 10, 9, 8, ..., 
+
+for i in range(1,10, 1):
+    print(i)
+    if i==-5:
+        break
+else:
+    print("Loop completed without break")
+
+
+while condition:
+    #logic
+else:
+    #logic
+
+i=1
+while i < 10:
+    print(i)
+    i += 1
+    if i == -5:
+        break
+else:
+    print("Loop completed without break")
+
+Data structures:
+    1. List
+    2. Tuple
+    3. Set
+    4. Dict 
+    5. String
+    6. Boolean
+    7. float
+    8. Int
+
+Comphrehensions:
+    1. List
+    2. Tuple
+    3. Dict
+    4. Set
+
+a=[]
+for i in range(10):
+    if i%2==0:
+        a.append(i)
+
+b={ i: i for i in range(10) if i%2==0}
