@@ -25,6 +25,8 @@ Tasks:
     7. Read the data from the excel file and write it to the console with Tuple format
     8. Read the created excel file and also csv files which were created above with the help of Pandas library and do manipulations like 
          filtering, sorting, grouping, etc.
+    9. Know about Parquet files and write this csv data to parquet file with compression and without compression
+    10. Read the parquet file and write it to the console with Dictionary, List, Tuple format
 """
 
 # my_wb = openpyxl.Workbook()
