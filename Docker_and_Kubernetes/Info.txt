@@ -1,0 +1,26 @@
+"""
+Permissions:
+    r-4
+    w-2
+    x-1
+
+Users:
+    1. Root User
+    2. Normal User
+    3. Guest User'
+Documentation:
+    1. https://www.dynatrace.com/news/blog/kubernetes-vs-docker/
+    2. https://www.paloaltonetworks.com/cyberpedia/kubernetes-docker
+Youtube Watchlist: 
+    1. https://www.youtube.com/watch?v=jPdIRX6q4jA&list=PLy7NrYWoggjwPggqtFsI_zMAwvG0SqYCb
+
+Topics Discussion:
+    1. Docker
+    2. Kubernetes
+    3. Helm Templates
+
+Tasks:
+    1. Install Docker on your os
+    2. Pull any docker image like postgresql, mysql, nginx etc into local machine
+    3. Give me list basic Docker commands and how it's used in real world with examples
+"""
