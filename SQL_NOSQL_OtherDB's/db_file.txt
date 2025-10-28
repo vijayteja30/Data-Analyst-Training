@@ -1,0 +1,88 @@
+"""
+    Database Types:
+        1. SQL - Relational databases like MySQL, PostgreSQL, SQLite, etc.
+            i. ACID (Atomicity, Consistency, Isolation (Integrity), Durability) compliant
+            ii. Strong Relationships and schema enforcement
+            iii. Something like OLTP kind of databases
+            iv. Isolation levels: Read Uncommitted, Read Committed, Repeatable Read, Serializable.
+        2. NoSQL - Non-relational databases like MongoDB, Cassandra, etc.
+        3. Cache DB's - In-memory databases like Redis, Memcached, etc.
+        4. Indexing DB's - Specialized databases for indexing like Elasticsearch, Solr, etc.
+        5. Graph DB's - Databases designed for graph data like Neo4j, ArangoDB, etc.
+        6. Time Series DB's - Databases optimized for time series data like InfluxDB, TimescaleDB, etc.
+        7. OLAP DB's - Online Analytical Processing databases designed for complex queries and analysis like Amazon Redshift, Google BigQuery, etc.
+    
+    Database Architecture Types:
+        1. OLTP (Online Transaction Processing) - Designed for transaction-oriented applications, focusing on fast query processing and maintaining data integrity.
+          i. Examples: MySQL, PostgreSQL, Oracle.
+        2. OLAP (Online Analytical Processing) - Designed for complex queries and data analysis, often used in data warehousing.
+          i. Examples: Amazon Redshift, Google BigQuery, Apache Hive.
+    
+    Tasks: 
+        1. Read Isolation levels with details examples with query code examples
+
+    Documentation:
+        1. SQL: 
+            i. https://www.aviator.co/blog/acid-transactions-postgresql-database/
+            ii. https://www.postgresql.org/docs/current/transaction-iso.html
+            iii. https://www.datacamp.com/blog/acid-transactions
+            iv. https://estuary.dev/blog/acid-transactions/
+            
+"""
+
+
+
+try:
+    session = Session()
+    # perform deduction from A account (200 - 199 deduct- 1 rupee left, 500 credit, 200 debit)
+    # perform addition to B account
+
+except Exception as e:
+    # Log the error
+    print(f"An error occurred: {e}")
+    # Rollback the transaction
+    # rollback_transaction()
+else:
+    # Commit the transaction if no errors occurred
+    # commit_transaction()
+    print("Transaction completed successfully.")
+
+
+
+"""
+create table tablename(
+    user_id int primary key,
+    User_name varchar(255) not null,
+    email varchar(255) not null unique,
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp on update current_timestamp
+)
+
+
+insert into tablename (user_id, User_name, email) 
+    values (1, 'John Doe', 'xyz@gmail.com', '2023-10-01 12:00:00', '2023-10-01 12:00:00');
+
+insert into tablename (user_id, User_name, email)
+    values (2, 'Jane Doe', 'xyz@gmail.com', '2023-10-01 12:00:00', '2023-10-01 12:00:00');
+    
+"""
+
+transaction (1) - A
+    Account: 200
+    Operation: Deduct 1 rupee
+    commit - 199
+
+
+
+Trasaction 2 - A
+    Account: 200 
+    Operation: Credit 500 rupees
+    commit - 699
+
+
+
+WAL:
+    User_id: 1, operation: Delete Data = Col, Col modified, added, 
+    user_id: 2, Operation: Delete, Modification, addition
+    User_id: 3, Operation: Delete, Modification, addition
+    User_id: 1, Operation: Delete
