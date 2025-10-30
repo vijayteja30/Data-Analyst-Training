@@ -6,11 +6,11 @@
             iii. Something like OLTP kind of databases
             iv. Isolation levels: Read Uncommitted, Read Committed, Repeatable Read, Serializable.
         2. NoSQL - Non-relational databases like MongoDB, Cassandra, etc.
+            query - User.find({"user_id": 123, age:{gt:20}}) 
         3. Cache DB's - In-memory databases like Redis, Memcached, etc.
         4. Indexing DB's - Specialized databases for indexing like Elasticsearch, Solr, etc.
         5. Graph DB's - Databases designed for graph data like Neo4j, ArangoDB, etc.
         6. Time Series DB's - Databases optimized for time series data like InfluxDB, TimescaleDB, etc.
-        7. OLAP DB's - Online Analytical Processing databases designed for complex queries and analysis like Amazon Redshift, Google BigQuery, etc.
     
     Database Architecture Types:
         1. OLTP (Online Transaction Processing) - Designed for transaction-oriented applications, focusing on fast query processing and maintaining data integrity.
@@ -20,6 +20,12 @@
     
     Tasks: 
         1. Read Isolation levels with details examples with query code examples
+        2. Create FastAPI application with endpoints like DB CRUD operations, create proper routings for all below.
+            i. Use Sql alchemy
+            ii. Create - Create User records
+            iii. Update - Update User records
+            iv. read - read user records
+            v. Delete - delete user records
 
     Documentation:
         1. SQL: 
@@ -27,6 +33,7 @@
             ii. https://www.postgresql.org/docs/current/transaction-iso.html
             iii. https://www.datacamp.com/blog/acid-transactions
             iv. https://estuary.dev/blog/acid-transactions/
+            v. https://www.geeksforgeeks.org/data-engineering/what-are-the-advantages-and-disadvantages-of-using-sql-vs-nosql-databases/
             
 """
 
@@ -42,9 +49,10 @@ except Exception as e:
     print(f"An error occurred: {e}")
     # Rollback the transaction
     # rollback_transaction()
-else:
+finally:
     # Commit the transaction if no errors occurred
     # commit_transaction()
+    session.commit()
     print("Transaction completed successfully.")
 
 
@@ -86,3 +94,22 @@ WAL:
     user_id: 2, Operation: Delete, Modification, addition
     User_id: 3, Operation: Delete, Modification, addition
     User_id: 1, Operation: Delete
+
+
+
+
+Begin
+
+Transaction:
+    read query data: select * from employee where salayr>=1000 and salary<=10000
+        obj = sql_query()
+        records: 1000
+    
+    for row in obj.fetchall(): #1005
+        update(row)
+    
+    commit()
+
+    read_another_xyz: select * from employee where age>10
+
+
