@@ -1,0 +1,133 @@
+"""
+    DB Engine: PosgreSQL
+
+
+
+SELECT [DISTINCT | ALL]
+       column1 AS alias1,
+       column2,
+       agg_function(column3) AS total_value,
+       ...
+FROM   table_name [AS alias]
+
+-- 🔹 1️⃣ JOINS
+[INNER | LEFT | RIGHT | FULL | CROSS] JOIN other_table [AS alias]
+       ON table_name.column = other_table.column
+
+-- 🔹 2️⃣ FILTERING
+WHERE  condition1
+   [AND | OR] condition2
+   [AND | OR] (nested_condition)
+
+-- 🔹 3️⃣ GROUPING
+GROUP BY column1, column2, ...
+
+-- 🔹 4️⃣ GROUP FILTER
+HAVING condition_on_aggregates
+
+-- 🔹 5️⃣ SORTING
+ORDER BY column1 [ASC | DESC], column2 [ASC | DESC]
+
+-- 🔹 6️⃣ PAGINATION
+LIMIT number_of_rows
+OFFSET start_position
+
+-- 🔹 7️⃣ OPTIONAL SET OPERATIONS
+[UNION | UNION ALL | INTERSECT | EXCEPT]
+SELECT ...
+
+-- 🔹 8️⃣ OPTIONAL SUBQUERIES
+WHERE column IN (SELECT column FROM another_table WHERE ...)
+
+-- 🔹 9️⃣ WINDOW FUNCTIONS
+SELECT column,
+       ROW_NUMBER() OVER (PARTITION BY col1 ORDER BY col2) AS row_num
+FROM   table_name;
+
+
+Example:
+    SELECT 
+        c.customer_id,
+        c.name AS customer_name,
+        SUM(o.total_amount) AS total_spent,
+        COUNT(o.order_id) AS total_orders
+    FROM 
+        customers c
+    LEFT JOIN 
+        orders o 
+        ON c.customer_id = o.customer_id
+    WHERE 
+        c.country = 'India' 
+        AND o.order_date >= '2024-01-01'
+    GROUP BY 
+        c.customer_id, c.name
+    HAVING 
+        SUM(o.total_amount) > 10000
+    ORDER BY 
+        total_spent DESC, c.name ASC
+    LIMIT 10
+    OFFSET 0;
+"""
+
+
+
+After select:
+    column names can be specified as:
+    - column_name AS alias_name - Renames the column in the result set.
+    - column_name - Returns the column as is.
+    Aggregations functions:
+        - COUNT(column_name) - Returns the number of rows that match the specified condition.
+            i. select count(*) from table_name;
+            ii. select count(distinct column_name) from table_name; # Gender - Male, Female, transgender, gay, lesbian, etc.
+        - SUM(column_name) - Returns the total sum of a numeric column. 
+            i. select sum(salary) from table_name;
+        - AVG(column_name) - Returns the average value of a numeric column.
+            i. select avg(salary) from table_name;
+        - MIN(column_name) - Returns the minimum value in a set.
+            i. select min(salary) from table_name;
+        - MAX(column_name) - Returns the maximum value in a set.
+            i. select max(salary) from table_name;
+    - Functions can be used to manipulate data:
+        - UPPER(column_name) - Converts a string to uppercase.
+            i. select upper(column_name) from table_name;
+        - LOWER(column_name) - Converts a string to lowercase.
+            i. select lower(column_name) from table_name;
+        - CONCAT(column1, column2, ...) - Concatenates two or more strings.
+            i. select concat(first_name, ' ', last_name) as full_name from table_name; # Hari Santosh
+        - SUBSTRING(column_name, start, length) - Extracts a substring from a string.
+            i. select substring(column_name, 1, 5) from table_name; # Extracts first 5 characters. # Hari 
+        - LENGTH(column_name) - Returns the length of a string.
+            i. select length(column_name) from table_name; # Returns the length of the string
+        - REPLACE(column_name, 'old_value', 'new_value') - Replaces occurrences of a substring within a string.
+            i. select replace(column_name, 'old_value', 'new_value') from table_name
+        - TRUNCATE(column_name, decimal_places) - Truncates a number to a specified number of decimal places.
+            i. select truncate(column_name, 2) from table_name; # Truncates string cases, int cases
+            ii. select round(column_name, 2) from table_name; # Rounds to 2 decimal places. int cases
+        - NOW() - Returns the current date and time.
+            i. select now(); # Returns current date and time.
+        - DATE(column_name) - Extracts the date part from a datetime value.
+            i. select date(column_name) from table_name; # Returns only the date part.
+        - TIME(column_name) - Extracts the time part from a datetime value.
+            i. select time(column_name) from table_name; # Returns only the time part.
+        - DATE_FORMAT(column_name, 'format') - Formats a date according to the specified format.
+            i. select date_format(column_name, '%Y-%m-%d') from table_name; # Formats date as YYYY-MM-DD.
+        - COALESCE(column1, column2, ...) - Returns the first non-null value in the list.
+            i. select coalesce(column1, column2, 'default_value') from table_name; # Returns first non-null value.
+            ii. select coalesce(surname, first_name, last_name, 'Unknown Name') from table_name; # Returns first non-null value.
+        - IFNULL(column_name, 'default_value') - Returns a default value if the column is NULL.
+            i. select ifnull(column_name, 'default_value') from table_name;
+        - NULLIF(column1, column2) - Returns NULL if the two arguments are equal; otherwise, returns the first argument.
+            i. select nullif(column1, column2) from table_name; # Returns NULL if column1 equals column2.
+        - CAST(column_name AS data_type) - Converts a column to a specified data type.
+            i. select cast(column_name AS data_type) from table_name; # Converts column to specified data type.
+                eg: select case(price as integer) from table_name; # Converts price to integer.
+        - ASCII(column_name) - Returns the ASCII value of the first character of a string.
+            i. select ascii(column_name) from table_name; # Returns ASCII value of first character
+        - TRIM(column_name) - Removes leading and trailing spaces from a string.
+            i. select trim(column_name) from table_name;
+        
+    - DISTINCT - Used to return only distinct (different) values.
+        i. select distinct column_name from table_name;
+        ii. select distinct column1, column2 from table_name; # multiple columns combination unique values.
+    
+
