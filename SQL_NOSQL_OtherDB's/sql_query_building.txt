@@ -130,4 +130,3 @@ After select:
         i. select distinct column_name from table_name;
         ii. select distinct column1, column2 from table_name; # multiple columns combination unique values.
     
-

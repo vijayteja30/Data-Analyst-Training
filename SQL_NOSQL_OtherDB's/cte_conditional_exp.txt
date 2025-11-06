@@ -1,0 +1,114 @@
+if a>b:
+    print("a is greater than b")
+elif a==b:
+    print("a is equal to b")
+else:
+    print("b is greater than a")
+
+"""
+# Conditional Expressions in SQL:
+    1. CASE:
+    2. COALESCE:
+    3. NULLIF:
+    4. GREATEST:
+    5. LEAST:
+"""
+
+CASE:
+"""
+    Syntax:
+        CASE 
+            WHEN condition1 THEN result1
+            WHEN condition2 THEN result2
+            ...
+            ELSE default_result
+        END
+
+    Example:
+        SELECT 
+            employee_id, 
+            salary,
+            CASE 
+                WHEN salary < 30000 THEN 'Low'
+                WHEN salary BETWEEN 30000 AND 70000 THEN 'Medium'
+                ELSE 'High'
+            END AS salary_category
+        FROM employees;
+"""
+
+COALESCE:
+"""
+    Syntax:
+        COALESCE(value1, value2, ..., default_value)
+
+    Example:
+        SELECT 
+            employee_id, 
+            COALESCE(first_name,last_name, surname, 'No Name exists') AS employee_name
+        FROM employees;
+"""
+
+NULLIF:
+"""
+Syntax:
+    NULLIF(expression1, expression2)
+"""
+
+GREATEST: GREATEST (expression1, expression2, ...)
+
+"""
+    Syntax:
+        GREATEST(value1, value2, ..., valueN)
+
+    Example:
+        SELECT 
+            employee_id, 
+            GREATEST(salary, bonus, commission) AS max_compensation
+        FROM employees;
+"""
+
+LEAST: LEAST (expression1, expression2, ...)
+
+"""
+    Syntax:
+        LEAST(value1, value2, ..., valueN)
+
+    Example:
+        SELECT 
+            employee_id, 
+            LEAST(salary, bonus, commission) AS min_compensation
+        FROM employees;
+"""
+
+===========================================================================================================
+
+
+Common Table Expressions (CTEs):
+"""
+    CTEs are temporary result sets that can be referenced within a SELECT, INSERT, UPDATE, or DELETE statement.
+    They are defined using the WITH clause and can be used to simplify complex queries or improve readability.
+
+    Syntax:
+        WITH cte_name AS (
+            SELECT column1, column2, ...
+            FROM table_name
+            WHERE condition
+        )
+        SELECT * FROM cte_name;
+    Example:
+        WITH high_salary_employees AS (
+            SELECT employee_id, first_name, last_name, salary
+            FROM employees
+            WHERE salary > 70000
+        )
+        SELECT * FROM high_salary_employees;
+
+    Swapping Logic:
+        a=10
+        b=20
+        temp = a
+        a = b
+        b = temp
+"""
+
+
