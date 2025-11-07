@@ -1,0 +1,27 @@
+"""
+Version Control: Github Commands
+
+Must Know commands:
+1.  git init
+2.  git status
+3.  git branch
+4.  git checkout
+5.  git diff
+6.  git diff HEAD
+7.  git add
+8.  git commit
+9.  git stash
+10. git fetch
+11. git pull
+12. git merge
+13. git rebase
+14. git push
+15. git tag
+16. git reset
+17. git revert
+18. git cherry-pick
+19. git bisect
+20. git log
+21. git blame
+22. git clone
+"""

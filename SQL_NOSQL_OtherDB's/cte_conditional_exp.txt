@@ -89,12 +89,26 @@ Common Table Expressions (CTEs):
     They are defined using the WITH clause and can be used to simplify complex queries or improve readability.
 
     Syntax:
-        WITH cte_name AS (
+        WITH cte_name(column1, column2 ...) AS (
             SELECT column1, column2, ...
             FROM table_name
             WHERE condition
         )
         SELECT * FROM cte_name;
+
+        -----------
+
+        WITH RECURSIVE cte_name(column1, column2 ...) AS (
+            SELECT column1, column2, ...
+            FROM table_name
+            WHERE condition
+            UNION ALL
+            SELECT column1, column2, ...
+            FROM cte_name
+            WHERE recursive_condition
+        )
+        SELECT * FROM cte_name;
+
     Example:
         WITH high_salary_employees AS (
             SELECT employee_id, first_name, last_name, salary
@@ -110,5 +124,17 @@ Common Table Expressions (CTEs):
         a = b
         b = temp
 """
+
+Recursive code in python:
+
+def fibonacci(num):
+    if num <= 0:
+        return "Input should be a positive integer."
+    elif num == 1:
+        return 0
+    elif num == 2:
+        return 1
+    else:
+        return fibonacci(num - 1) + fibonacci(num - 2)
 
 
