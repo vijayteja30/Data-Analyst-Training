@@ -43,16 +43,16 @@ try:
     session = Session()
     # perform deduction from A account (200 - 199 deduct- 1 rupee left, 500 credit, 200 debit)
     # perform addition to B account
-
+    session.commit()
+    # Commit the transaction if no errors occurred
+    # commit_transaction()
 except Exception as e:
     # Log the error
     print(f"An error occurred: {e}")
     # Rollback the transaction
     # rollback_transaction()
 finally:
-    # Commit the transaction if no errors occurred
-    # commit_transaction()
-    session.commit()
+   session.close()
     print("Transaction completed successfully.")
 
 
@@ -113,3 +113,12 @@ Transaction:
     read_another_xyz: select * from employee where age>10
 
 
+Transaction:
+    person A: 200
+    person B: 300
+
+       - Deduct 50 from A
+         - Add 50 to B
+    commit() # A - 150, B - 350 # Successfull
+    Rollback() # A - 200, B - 300 # Failed
+    

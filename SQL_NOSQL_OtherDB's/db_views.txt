@@ -1,0 +1,38 @@
+"""
+DB Engine: PostgreSQL
+
+Views:
+    1. Normal Views:
+        - A view is a virtual table based on the result set of a SQL query.
+        - It does not store data physically but provides a way to simplify complex queries and enhance security by restricting access to specific data.
+        - Syntax:
+            CREATE VIEW view_name AS
+            SELECT column1, column2, ...
+            FROM table_name
+            WHERE condition;
+
+        - Example:
+            CREATE VIEW employee_view AS
+            SELECT employee_id, first_name, last_name, department
+            FROM employees
+            WHERE department = 'Sales';
+    2. Materialized Views:
+        - A materialized view is a physical copy of the result set of a SQL query.
+        - It stores data physically and can be refreshed periodically to reflect changes in the underlying tables.
+        - Syntax:
+            CREATE MATERIALIZED VIEW view_name AS
+            SELECT column1, column2, ...
+            FROM table_name
+            WHERE condition;
+        - Example:
+            CREATE MATERIALIZED VIEW sales_summary AS
+            SELECT product_id, SUM(quantity) AS total_quantity, SUM(total_price) AS total_sales
+            FROM sales
+            GROUP BY product_id;
+
+
+    Tasks:
+        1. Download dataset from kaggle website for ecommerce data and import that data in your local postgresql database.
+        2. Create normal views and materialized views for that data with proper examples.
+        
+"""

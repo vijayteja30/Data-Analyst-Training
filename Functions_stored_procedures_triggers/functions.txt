@@ -1,0 +1,64 @@
+"""
+    Engine: PostgreSQL
+    Topic: Functions, Stored Procedures, and Triggers
+
+    Function Returns:
+        1. Single scalar value (e.g., integer, text)
+        2. Set of rows (table) eg., ((name, age, gender), (name, age, gender), ...)
+        3. Void (no return value)
+        4. Custom data type
+    
+    Predefine functions:
+        1. concat() - concat('hai', ' hello')
+    eg: select sum_numbers(20,30);
+"""
+
+
+# Python Function
+def sum_numbers(a, b):
+    """
+    A simple function that takes two numbers as input and returns their sum.
+    """
+    return a + b
+
+PostgreSQL function syntax:
+        CREATE [OR REPLACE] FUNCTION function_name (arguments)
+        RETURNS return_data_type AS $$
+        BEGIN
+            -- function body
+        END; $$
+        LANGUAGE plpgsql;
+
+        # PostgreSQL Function Example
+        """
+        CREATE OR REPLACE FUNCTION sum_numbers(a INTEGER, b INTEGER)
+        RETURNS INTEGER AS $$
+        BEGIN
+            RETURN a + b;
+        END; $$
+        LANGUAGE plpgsql;
+        """
+
+
+        # DB write example:
+        """
+        CREATE OR REPLACE FUNCTION add_brand(name varchar)
+        RETURNS VOID AS $$
+        BEGIN
+            INSERT INTO brands (brand_name) VALUES (name);
+        END; $$
+        LANGUAGE plpgsql;
+        """
+
+        CREATE OR REPLACE FUNCTION add_brand(name varchar, country varchar)
+        RETURNS varchar AS $$
+        BEGIN
+            RETURN CONCAT(name, country);
+        END; $$
+        LANGUAGE plpgsql;
+
+DROP FUNCTION Syntax:
+    DROP FUNCTION [IF EXISTS] function_name(parameters) RESTRICT/CASCADE;
+
+
+    
