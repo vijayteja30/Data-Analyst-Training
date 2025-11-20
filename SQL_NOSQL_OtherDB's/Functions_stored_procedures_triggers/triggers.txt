@@ -1,0 +1,28 @@
+"""
+    Engine: PostgreSQL
+    Triggers can be performed at two levels:
+        1. Physical data level: INSERT, UPDATE, DELETE, TRUNCATE
+        2. DDL level: CREATE, ALTER, DROP of database objects like tables, views, etc.
+    
+    Task:
+        1. Add a commit with above second level DDL trigger syntax and it's example
+"""
+
+Physical data Level:
+        Triggers PostgreSQL Syntax:
+            CREATE [OR REPLACE] TRIGGER trigger_name
+            { BEFORE | AFTER } { INSERT | UPDATE | DELETE | TRUNCATE }
+                ON table_name
+                [ FOR [ EACH ] { ROW | STATEMENT } ]
+                [ WHEN ( condition ) ]
+                EXECUTE { FUNCTION | PROCEDURE } caller_name(arguments);
+
+        DROP TRIGGER Syntax:
+            DROP TRIGGER [ IF EXISTS ] trigger_name ON table_name RESTRICT/CASCADE;
+
+        DISABLE TRIGGER Syntax:
+            ALTER TABLE table_name DISABLE TRIGGER [ IF EXISTS ] trigger_name | ALL;
+
+        ENABLE TRIGGER Syntax:
+            ALTER TABLE table_name ENABLE TRIGGER [ IF EXISTS ] trigger_name | ALL;
+

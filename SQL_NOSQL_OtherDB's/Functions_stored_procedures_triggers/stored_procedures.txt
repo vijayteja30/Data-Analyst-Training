@@ -1,0 +1,53 @@
+"""
+    Engine: PostgreSQL
+"""
+
+Stored Procedures Syntax:
+        Syntax1:
+                CREATE OR REPLACE PROCEDURE procedure_name(parameter_list) 
+                AS
+                $$
+                -- body of the stored procedure
+                $$
+                LANGUAGE SQL;
+        Syntax2:
+                CREATE OR REPLACE PROCEDURE procedure_name(parameter_list)
+                LANGUAGE plpgsql AS
+                BEGIN ATOMIC
+                    -- body of the stored procedure
+                END;
+        
+
+        # PostgreSQL Stored Procedure Example
+        """
+        CREATE OR REPLACE PROCEDURE log_user_activity(user_id INTEGER, activity TEXT)
+        LANGUAGE plpgsql AS $$
+        BEGIN
+            INSERT INTO user_activity_log (user_id, activity, activity_time)
+            VALUES (user_id, activity, NOW());
+        END; $$;
+        """
+    
+"""
+Data Partitioning in PostgreSQL Eg:
+    /{schema_name}/{table_name}/data.csv
+
+    /{schema_name}/{table_name}/{sale_date_partition}/data.csv
+        /public/brands/11-20-2025/data.csv
+        /public/products/11-21-2025/data.csv
+        /public/sales/11-22-2025/data.csv
+
+    /{schema_name}/{table_name}/{brand_name}/{sale_date_partition}/data.csv
+        /public/brands/vivo/11-20-2025/data.csv
+        /public/brands/vivo/11-21-2025/data.csv
+        /public/brands/vivo/11-22-2025/data.csv
+        /public/products/iphone/11-21-2025/data.csv
+        /public/sales/samsung/11-22-2025/data.csv
+
+
+    select * from brands where brand_id='vivo' and sale_date='11-20-2025';
+"""
+
+
+DROP PROCEDURE Syntax:
+        DROP PROCEDURE [IF EXISTS] procedure_name (argument_types) RESTRICT/CASCADE;
