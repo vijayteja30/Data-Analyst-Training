@@ -1,0 +1,75 @@
+"""
+    Engine: PostgreSQL
+    Title: Creating Indexes
+
+    Indexes are special lookup tables that the database search engine can use to speed up data retrieval. 
+    They are created on one or more columns of a table and can significantly improve query performance.
+
+    Index Types:
+    1. B-tree Index: The default index type in PostgreSQL, suitable for most data types and queries.
+    2. Hash Index: Used for equality comparisons, but less commonly used due to some limitations.
+    3. GIN (Generalized Inverted Index): Ideal for indexing array values and full-text search.
+    4. GiST (Generalized Search Tree): Useful for complex data types like geometric data.
+    5. BRIN (Block Range INdex): Efficient for large tables where data is naturally ordered.
+    6. SP-GiST (Space-partitioned Generalized Search Tree): Suitable for partitioned data types.
+
+
+"""
+1. B-tree Index(product_name text): Search Operation takes O(log n) time complexity.
+    
+2. Hash Index(product_name text): Search Operation takes O(1) time complexity on average.
+    {
+        "abc0567123cdefgikg": ("Samsung Galaxy S21", "Disk read 0 block")
+        "abc0567123cdefgikl": ("Apple iPhone 13", "Disk read 1 block")
+        "abc0567123cdefgikm": ("Google Pixel 6", "Disk read 0 block")
+    }
+
+create table products(
+    product_id serial primary key,
+    product_name text, 
+    price numeric,
+    product_metadata jsonb
+    product_images text[]
+)
+
+-----------------------------------------------
+
+Create Indexes Syntax:
+        CREATE INDEX index_name
+        ON table_name USING index_type (column_name1, column_name2, ...);
+
+        Example:
+            CREATE INDEX idx_product_name
+            ON products USING btree (product_name);
+-----------------------------------------------
+
+Create Unique Index Syntax:
+        CREATE UNIQUE INDEX [index_name] ON table_name (column1[, column2, ...])
+            [ NULLS [ NOT ] DISTINCT ];
+
+        Example:
+            CREATE UNIQUE INDEX idx_unique_product_name
+            ON products USING btree (product_name);
+
+-----------------------------------------------
+
+Create Partial Index Syntax:
+        CREATE INDEX index_name
+        ON table_name (column_name1, column_name2, ...)
+        WHERE condition;
+
+        Example:
+            CREATE INDEX idx_expensive_products
+            ON products (price)
+            WHERE price > 1000;
+
+-----------------------------------------------
+
+DROP INDEX Syntax:
+        DROP INDEX [CONCURRENTLY] [IF EXISTS] index_name
+            [CASCADE | RESTRICT];
+
+        Example:
+            DROP INDEX idx_product_name;
+-----------------------------------------------
+        

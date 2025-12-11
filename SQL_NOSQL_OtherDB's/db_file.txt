@@ -89,7 +89,7 @@ Trasaction 2 - A
 
 
 
-WAL:
+WAL(Write a log):
     User_id: 1, operation: Delete Data = Col, Col modified, added, 
     user_id: 2, Operation: Delete, Modification, addition
     User_id: 3, Operation: Delete, Modification, addition
