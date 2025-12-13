@@ -1,0 +1,6 @@
+2025-12-13 07:39:18,565 - INFO - Scraping product 1/1
+2025-12-13 07:39:18,567 - INFO - Starting to scrape product from: https://www.amazon.in/Sumeet-Stainless-Induction-Friendly-Cookware/dp/B086T3JZHV/?_encoding=UTF8&pd_rd_w=cefZG&content-id=amzn1.sym.ed223e70-d8c8-4549-9e85-87f039655f35&pf_rd_p=ed223e70-d8c8-4549-9e85-87f039655f35&pf_rd_r=C83MQYFHZHS73GVJFJQM&pd_rd_wg=2fGWr&pd_rd_r=09787769-79a4-48fa-8377-36587782ac2e&ref_=pd_hp_d_atf_dealz_sv&th=1
+2025-12-13 07:39:19,130 - INFO - Successfully fetched: https://www.amazon.in/Sumeet-Stainless-Induction-Friendly-Cookware/dp/B086T3JZHV/?_encoding=UTF8&pd_rd_w=cefZG&content-id=amzn1.sym.ed223e70-d8c8-4549-9e85-87f039655f35&pf_rd_p=ed223e70-d8c8-4549-9e85-87f039655f35&pf_rd_r=C83MQYFHZHS73GVJFJQM&pd_rd_wg=2fGWr&pd_rd_r=09787769-79a4-48fa-8377-36587782ac2e&ref_=pd_hp_d_atf_dealz_sv&th=1
+2025-12-13 07:39:19,192 - INFO - Successfully scraped product: None
+2025-12-13 07:39:19,194 - INFO - Data saved to products.json
+2025-12-13 07:39:19,195 - INFO - Images saved to product_images

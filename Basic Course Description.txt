@@ -55,6 +55,17 @@ Comphrehensions:
     3. Dict
     4. Set
 
+Data structures and algorithms:
+    1. Searching - Linear, Binary
+    2. Sorting - Bubble, Selection, Insertion, Merge, Quick
+    3. Linked List - Singly, Doubly
+    4. Stack - LIFO
+    5. Queue - FIFO, Deque, circular Queue
+    6. Tree - BST, AVL, Heap
+    7. Graph - DFS, BFS
+
+
+
 a=[]
 for i in range(10):
     if i%2==0:
